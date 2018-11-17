@@ -1,24 +1,18 @@
-const backgroundColor = '#eee'
+import GitHubRepos from "../components/GithubRepos";
+import Meta from "../components/Meta";
 
-export default () => (
-  <div className='hello'>
-    <p>Hello World</p>
-    <style jsx>{`
-      $color: red;
+const App = () => (
+  <div>
+    <Meta />
+    <h1>Popular GitHub Javascript Repositories</h1>
+    <GitHubRepos />
 
-      .hello {
-        background-color: ${backgroundColor};
-        padding: 100px;
-        text-align: center;
-        transition: 100ms ease-in background;
-        &:hover {
-          color: $color;
-        }
-
-        @media only screen and (max-width: 480px) {
-          font-size: 20px;
-        }
+    <style jsx global>{`
+      body {
+        padding: 30px;
       }
     `}</style>
   </div>
-)
+);
+
+export default App;
