@@ -1,16 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Table, Pane, Spinner } from "evergreen-ui";
+import { MOCK_URL } from "../mock/config.json";
 
-const API_URL = `https://api.github.com/search/repositories?q=stars:>1+language:javascript&sort=stars&order=desc&type=Repositories`;
+const API_URL = MOCK_URL
+  ? MOCK_URL
+  : `https://api.github.com/search/repositories?q=stars:>1+language:javascript&sort=stars&order=desc&type=Repositories`;
 
 const Repo = ({ repo, index }) => (
   <Table.Row key={index} isSelectable onSelect={() => alert(repo.name)}>
-    <Table.TextCell>{index + 1}</Table.TextCell>
-    <Table.TextCell flexBasis="25vw">
+    <Table.TextCell flexBasis="8vw" flexShrink={0} flexGrow={0}>
+      {index + 1}
+    </Table.TextCell>
+    <Table.TextCell flexBasis="40vw" flexShrink={0} flexGrow={0}>
       <span className="repo-name">{repo.name}</span>
     </Table.TextCell>
-    <Table.TextCell isNumber>{repo.stargazers_count}</Table.TextCell>
+    <Table.TextCell flexBasis="20vw" flexShrink={0} flexGrow={1} isNumber>
+      {repo.stargazers_count}
+    </Table.TextCell>
 
     <style jsx>{`
       .repo-name {
@@ -87,13 +94,19 @@ export default class GitHubRepos extends React.Component {
     return (
       <Table border="default" borderRadius={5} width="80vw">
         <Table.Head>
-          <Table.TextHeaderCell>#</Table.TextHeaderCell>
+          <Table.TextHeaderCell flexBasis="8vw" flexShrink={0} flexGrow={0}>
+            #
+          </Table.TextHeaderCell>
           <Table.SearchHeaderCell
-            flexBasis="25vw"
+            flexBasis="40vw"
+            flexShrink={0}
+            flexGrow={0}
             onChange={this.onChangeQuery}
             placeholder="Search by name..."
           />
-          <Table.TextHeaderCell>Stars Count</Table.TextHeaderCell>
+          <Table.TextHeaderCell flexBasis="20vw" flexShrink={0} flexGrow={1}>
+            Stars Count
+          </Table.TextHeaderCell>
         </Table.Head>
         <Table.Body maxHeight={400}>
           {repos
