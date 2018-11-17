@@ -1,11 +1,12 @@
 import GitHubRepos from "../components/GithubRepos";
-import Meta from "../components/Meta";
+import { Pane } from "evergreen-ui";
 
 const App = () => (
   <div>
-    <Meta />
     <h1>Popular GitHub Javascript Repositories</h1>
-    <GitHubRepos />
+    <Pane display="flex" alignItems="center" justifyContent="center" paddingTop={40}>
+      <GitHubRepos />
+    </Pane>
 
     <style jsx global>{`
       body {
